@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import QRScanner from "./QrModal";
 
 const AttendanceReport = () => {
   return (
@@ -34,12 +35,19 @@ const AttendanceReport = () => {
             <li className="mb-2">Generate Certificate</li>
             <li className="mb-2">Student / Teacher Feedback</li>
             <li className="mb-2">Assignment Submission</li>
+            <li className="mb-2">
+              <QRScanner />
+            </li>
           </ul>
         </nav>
         <main className="flex-1 p-6">
           <div className="bg-white shadow rounded-lg p-6">
             <h2 className="text-xl font-bold mb-4">Attendance</h2>
-            <div className="flex flex-wrap mb-4">
+            <div className="flex flex-wrap gap-2 mb-4">
+              <QRScanner
+                button="Scan Attendance"
+                message={"Attendance marked"}
+              />
               <select className="border p-2 mr-2 mb-2 rounded">
                 <option>Select Campus</option>
                 <option>Gulshan e iqbal</option>
@@ -88,27 +96,34 @@ const AttendanceReport = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4].map((employee, idx) => (
-                    <tr key={idx}>
-                      <td className="border bg-white px-4 py-2 flex items-center">
-                        <img
-                          src="https://via.placeholder.com/30"
-                          alt={`Student ${idx + 1}`}
-                          className="rounded-full mr-2"
-                        />
-                        Student {idx + 1}
-                      </td>
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5].map((day, dayIdx) => (
-                        <td key={dayIdx} className="border px-4 py-2 text-center">
-                          {day !== 8 && day !== 3 ? (
-                            <FaCheckCircle className="text-green-500" />
-                          ) : (
-                            <FaTimesCircle className="text-red-500" />
-                          )}
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4].map(
+                    (employee, idx) => (
+                      <tr key={idx}>
+                        <td className="border bg-white px-4 py-2 flex items-center">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt={`Student ${idx + 1}`}
+                            className="rounded-full mr-2"
+                          />
+                          Student {idx + 1}
                         </td>
-                      ))}
-                    </tr>
-                  ))}
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5].map(
+                          (day, dayIdx) => (
+                            <td
+                              key={dayIdx}
+                              className="border px-4 py-2 text-center"
+                            >
+                              {day !== 8 && day !== 3 ? (
+                                <FaCheckCircle className="text-green-500" />
+                              ) : (
+                                <FaTimesCircle className="text-red-500" />
+                              )}
+                            </td>
+                          )
+                        )}
+                      </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             </div>
